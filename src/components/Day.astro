@@ -1,0 +1,16 @@
+---
+const {dayNumber}  = Astro.props
+---
+
+<div class="border-2 rounded-xl mb-3 p-4 drop-shadow-md bg-white">
+    <div class="flex flex-row justify-center">
+        <div class="basis-2/12 flex justify-center items-center">
+            <div class="font-extrabold">Dag {dayNumber}:</div>
+        </div>
+        <div class="basis-10/12">
+            <p class="font-normal">
+                <slot />
+            </p>
+        </div>
+    </div>
+</div>

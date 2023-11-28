@@ -1,0 +1,44 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: install
+    image: node:20
+    commands:
+      - npm i
+
+  - name: build
+    image: node:20
+    commands:
+      - npm run build
+
+  - name: build docker image
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: registry-username
+      password:
+        from_secret: registry-password
+      repo: registry.sliceofbits.com/herman
+      registry: registry.sliceofbits.com/
+      tags: latest
+
+  - name: ssh
+    image: appleboy/drone-ssh
+    settings:
+      host:
+        - 188.166.107.220
+      username:
+        from_secret: ssh_username
+      password:
+        from_secret: ssh_password
+      port: 22
+      command_timeout: 2m
+      script:
+        - cd herman/
+        - docker-compose pull && docker-compose up -d
+when:
+  branch:
+    - main
+  event:
+    - push
