@@ -88,8 +88,9 @@ const recipies = await getCollection("recipies");
 
     <section class="bg-pink-600">
         <div class="lg:w-2/3 text-center mx-auto p-10">
-            <h2 class="text-3xl font-bold text-white pb-8">Recepten?</h2>
-            <div class="lg:columns-3">
+            <h2 class="text-3xl font-bold text-white pb-1">Recepten</h2>
+            <h3 class="font-semibold text-white pb-8">Een herman is leuk maar wat kun je er allemaal mee maken?</h3>
+            <div class="grid 2xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
                 {
                     recipies.map((recipe) => (
                             <div class="bg-white rounded-xl drop-shadow-2xl overflow-hidden mb-4">

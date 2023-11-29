@@ -14,23 +14,19 @@ const {entry} = Astro.props;
 const {Content} = await entry.render();
 ---
 <BaseLayout>
-    <section class="min-h-screen bg-pink-600 pt-20">
+    <section class="min-h-screen bg-pink-600 pt-20 px-2">
         <h1 class="font-bold text-white text-6xl text-center pb-8">{entry.data.title}</h1>
-        <div class="bg-white mx-auto w-2/3 rounded overflow-hidden drop-shadow-2xl">
-            <div class="columns-2 ">
-                <div class="p-4">
+        <div class="bg-white mx-auto xl:w-2/3 rounded overflow-hidden drop-shadow-2xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2">
+                <div class="p-4 max-sm:order-last">
                     <h2 class="text-pink-600 font-bold text-2xl pb-2">Ingredienten</h2>
                     {
-                        ()=> {
-                            if (entry.data.ingredients) {
-                                entry.data.ingredients.map((ingredient) => (
-                                        <div>
-                                            {ingredient.name} - {ingredient.amount}
-                                        </div>
-                                ))
-                            }
-
-                    }}
+                        entry.data.ingredients?.map((ingredient) => (
+                                <div>
+                                    {ingredient.name} - {ingredient.amount}
+                                </div>
+                        ))
+                    }
                 </div>
                 <Image src={entry.data.image} alt={entry.data.title} class=""/>
 
